@@ -1,5 +1,5 @@
 # RUN DIARY
-http://rundiary.click
+https://rundiary.click
 ## Elevator Pitch
 If you consider yourself a runner, you may have found yourself hoping for a simple and quick way to view how your times have improved throughout your workouts and races. **Run Diary** will be your one-stop website for tracking your running statistics. You can categorize each run that you log as a workout or race, and see how it stacks up against previous similar runs. You can also see and interact with your friends's runs!
 
