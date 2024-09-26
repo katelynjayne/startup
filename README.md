@@ -1,5 +1,16 @@
 # RUN DIARY
-https://rundiary.click
+https://startup.rundiary.click
+
+## HTML Deliverable
+* **Pages**: 4 pages: home (index.html), login (login.html), form to add new run (newrun.html), and run analytics (rundetails.html)
+* **Links**: Home page includes links to all other pages from menu or See More column. Login page links to home when the form is submitted. newrun.html includes a link to home or links to rundetails.html if the form is submitted. rundetails.html includes a link to home.
+* **Text**: Textual content is represented on all pages to represent information.
+* **Service Calls**: An example graph is displayed on rundetails.html as a placeholder for a call to a service that will generate graphs.
+* **Images**: Graph image displayed on rundetails.html
+* **Login**: Placeholder of login.html. Username display placeholder on home page.
+* **Database**: Example data displayed on index.html is a placeholder for run data that will be stored and extracted from a database.
+* **WebSocket**: Comment section on rundetails.html serves as a placeholder for the realtime comments that will be enabled through WebSocket.
+
 ## Elevator Pitch
 If you consider yourself a runner, you may have found yourself hoping for a simple and quick way to view how your times have improved throughout your workouts and races. **Run Diary** will be your one-stop website for tracking your running statistics. You can categorize each run that you log as a workout or race, and see how it stacks up against previous similar runs. You can also see and interact with your friends's runs!
 
