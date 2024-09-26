@@ -17,6 +17,35 @@
         </menu>
     </nav>
     <h2>ADD RUN</h2>
+    <form method="get" action="rundetails.html">
+        <div>
+            <label for="date">Date: </label>
+            <input type="date" id="date" />
+        </div>
+        <div>
+            <label for="distance">Distance: </label>
+            <input type="number" placeholder="in miles" id="distance"/>
+        </div>
+        <div>
+            <span>Time:</span>
+            <br />
+            <label for="hours">Hours: </label>
+            <input type="number" id="hours" />
+            <label for="minutes">Minutes: </label>
+            <input type="number" id="minutes" />
+            <label for="seconds">Seconds: </label>
+            <input type="number" id="seconds" />
+        </div>
+        <div>
+            <label for="type">Type: </label>
+            <select id="type">
+                <option selected>workout</option>
+                <option>run</option>
+            </select>
+        </div>
+        <br />
+        <button type="submit">ADD RUN!</button>
+    </form>
     <footer>
         <hr />
         <span>Kate Hill</span>
