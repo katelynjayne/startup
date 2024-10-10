@@ -1,11 +1,66 @@
-body {
-    background-color: lightcyan;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 h1 {
     text-align: center;
+    color: white;
+}
+
+
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: hotpink;
+    
+}
+  
+main {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+menu {
+    display: flex;
+    flex-direction: row !important;
+    list-style: none;
+}
+
+menu .nav-item {
+    padding: 0 0.3em;
+    color: white;
+
 }
 
 footer {
-    color: lightcyan;
+    background-color: darkolivegreen;
+    min-height: 50px;
+    color: white;
+}
+
+header {
+    background-color: rgb(163,163,80);
+    min-height: 50px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing:0 20px;
+}
+
+tr {
+    background-color: pink;
+}
+
+th, td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+table .header-row {
+    background-color: red;
 }
