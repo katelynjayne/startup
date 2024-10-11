@@ -47,6 +47,14 @@ footer {
 header {
     background-color: rgb(166, 179, 125);
     min-height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Navbar to the left, title to the middle */
+    align-items: center
+}
+
+header .secret {
+    color: rgb(166, 179, 125);
 }
 
 table {
