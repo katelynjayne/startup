@@ -116,6 +116,10 @@ input.form-control, select.form-select {
     display: inline-block; /* Ensure the input doesn't behave as a block element */
 }
 
+input.custom-time {
+    max-width: 15%;
+}
+ 
 .custom-input:focus, select.form-select:focus {
     background-color: rgb(254, 250, 224);
     border-color: rgb(96, 100, 69); /* Change border color */
