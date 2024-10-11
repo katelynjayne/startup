@@ -1,6 +1,14 @@
 # RUN DIARY
 https://startup.rundiary.click
 
+## CSS Deliverable
+* **Header, footer, and main content body**: All styled and arranged well.
+* **Navigation elements**: Restyled navbar to put in top right corner, using both bootstrap framework and some custom styling.
+* **Responsive to window resizing**: Used flex to allow display to be responsive and look good on all sizes of windows.
+* **Application elements**: Used consistent color scheme, arranging elements in a visually appealing way.
+* **Application text content**: Used consistent font family, resizing text to create emphasis.
+* **Application images**: Graph image on rundetails page, resized width.
+
 ## HTML Deliverable
 * **Pages**: 4 pages: home (index.html), login (login.html), form to add new run (newrun.html), and run analytics (rundetails.html)
 * **Links**: Home page includes links to all other pages from menu or See More column. Login page links to home when the form is submitted. newrun.html includes a link to home or links to rundetails.html if the form is submitted. rundetails.html includes a link to home.
