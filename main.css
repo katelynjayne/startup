@@ -102,14 +102,29 @@ a.see-more-link:hover {
 }
 
 input.form-control, select.form-select {
+    background-color: rgb(254, 250, 224);
     margin: 10px;
     width: auto; /* Adjust the width as needed */
     display: inline-block; /* Ensure the input doesn't behave as a block element */
 }
 
 .custom-input:focus, select.form-select:focus {
+    background-color: rgb(254, 250, 224);
     border-color: rgb(96, 100, 69); /* Change border color */
     box-shadow: 0 0 0 0.2rem rgba(96, 100, 69, 0.5); /* Optional: change focus shadow */
     outline: none; /* Optional: remove the default outline */
     
 }
+
+form, div.comment-section {
+    background-color: rgb(254, 250, 224);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+div.comment-section {
+    margin-left:auto;
+    margin-right: 10px;
+    max-width: 50%;
+}
+
