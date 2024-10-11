@@ -16,12 +16,15 @@ html, body {
     flex-direction: column;
     background-color: rgb(243, 199, 158);
     
+    
 }
   
 main {
+    display: flex;
     flex: 1;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 menu {
@@ -32,7 +35,7 @@ menu {
 
 menu .nav-item {
     padding: 0 1em;
-    color: white;
+    color: hotpink;
 
 }
 
@@ -66,11 +69,10 @@ table .header-row {
     background-color: rgb(192,199,140);
 }
 
-.table-info {
+p.table-info {
     text-align: center;
     background-color: rgb(254, 250, 224);
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 10px 10px 10px;
     border-radius: 10px;
 }
 
@@ -90,4 +92,22 @@ a.see-more-link:hover {
     color: rgb(196, 204, 138);
     cursor: pointer;
     border-bottom: 2px solid ;
+}
+
+.custom-btn {
+    background-color: rgb(192,199,140);
+}
+
+.custom-btn:hover {
+    background-color: rgb(166, 179, 125);
+}
+
+input.form-control {
+    margin: 10px;
+}
+
+.custom-input:focus {
+    border-color: rgb(96, 100, 69); /* Change border color */
+    box-shadow: 0 0 0 0.2rem rgba(96, 100, 69, 0.5); /* Optional: change focus shadow */
+    outline: none; /* Optional: remove the default outline */
 }
