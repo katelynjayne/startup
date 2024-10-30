@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(254, 250, 224);
+}
+
+
+html, .body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(243, 199, 158);
+}
+  
+main {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+menu {
+    flex: 1;
+    display: flex;
+    flex-direction: row !important;
+    list-style: none;
+}
+
+menu .nav-item {
+    display: flex;
+
+    padding: 0 0.5em;
+}
+
+footer {
+    background-color: rgb(166, 179, 125);
+    min-height: 50px;
+    color: rgb(254, 250, 224);
+}
+
+header {
+    background-color: rgb(166, 179, 125);
+    min-height: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-between; /* Navbar to the left, title to the middle */
+    align-items: center
+}
+
+header .secret {
+    color: rgb(166, 179, 125);
+}
+
+table {
+    border-collapse: separate;
+    border-spacing:0 20px;
+}
+
+tr {
+    background-color: rgb(254, 250, 224);
+}
+
+th, td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+table .header-row {
+    background-color: rgb(192,199,140);
+}
+
+p.table-info {
+    text-align: center;
+    background-color: rgb(254, 250, 224);
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+h2 {
+    padding-top: 20px;
+}
+
+a.see-more-link {
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: large;
+    color: rgb(96, 100, 69);
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+a.see-more-link:hover {
+    color: rgb(196, 204, 138);
+    cursor: pointer;
+    border-bottom: 2px solid ;
+}
+
+.custom-btn {
+    background-color: rgb(192,199,140);
+}
+
+.custom-btn:hover {
+    background-color: rgb(166, 179, 125);
+}
+
+input.form-control, select.form-select {
+    background-color: rgb(254, 250, 224);
+    margin: 10px;
+    width: auto; /* Adjust the width as needed */
+    display: inline-block; /* Ensure the input doesn't behave as a block element */
+}
+
+input.custom-time {
+    max-width: 10%;
+}
+ 
+.custom-input:focus, select.form-select:focus {
+    background-color: rgb(254, 250, 224);
+    border-color: rgb(96, 100, 69); /* Change border color */
+    box-shadow: 0 0 0 0.2rem rgba(96, 100, 69, 0.5); /* Optional: change focus shadow */
+    outline: none; /* Optional: remove the default outline */
+    
+}
+
+form, div.comment-section {
+    background-color: rgb(254, 250, 224);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+div.comment-section {
+    margin-left:auto;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 50%;
+}
+
