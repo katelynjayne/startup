@@ -15,9 +15,9 @@ export default function App() {
             <nav className="navbar">
                 <menu className="navbar-nav">
                     <li className="nav-item"><NavLink className="nav-link" to=''>Login</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link"to='add'>Add Run</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link" to='runs'>Runs</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link"to='stats'>Stats</NavLink></li>
+                    <li className="nav-item"><NavLink className="nav-link"to='/add'>Add Run</NavLink></li>
+                    <li className="nav-item"><NavLink className="nav-link" to='/runs'>Runs</NavLink></li>
+                    <li className="nav-item"><NavLink className="nav-link"to='/stats'>Stats</NavLink></li>
                 </menu>
             </nav>
                 <h1>RUN DIARY</h1>

@@ -3,7 +3,7 @@ import React from 'react';
 export function Stats() {
   return (
     <main>
-      <table style="width:100%; text-align: center;">
+      <table>
         <tr class="header-row">
           <th>Date</th>
           <th>Distance</th>

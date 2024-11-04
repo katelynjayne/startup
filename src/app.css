@@ -58,6 +58,8 @@ header .secret {
 table {
     border-collapse: separate;
     border-spacing:0 20px;
+    width:100%; 
+    text-align: center;
 }
 
 tr {
