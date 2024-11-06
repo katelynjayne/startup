@@ -19,7 +19,7 @@ export function Unauthenticated(props) {
   return (
     <>
     <h2>LOGIN</h2>
-      <form method="get" action="runs">
+      <form method="get" action="runs" className="login-box">
         <div>
           <input type="text" placeholder="username" className="form-control custom-input" value={userName} onChange={(e) => setUserName(e.target.value)} />
         </div>
