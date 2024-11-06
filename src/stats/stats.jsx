@@ -1,5 +1,17 @@
 import React from 'react';
 
+import { Comments } from './comments';
+
+function generateGraph() {
+  const img_link = "example_graph.png"
+  try {
+    return <img src={img_link} width="50%"></img>
+  }
+  catch {
+    return <p>Sorry, we had a problem rendering your graph. :(</p>
+  }
+}
+
 export function Stats() {
   return (
     <main>
@@ -19,12 +31,8 @@ export function Stats() {
           <td>workout</td>
         </tr>
     </table>
-    <img src="example_graph.png" width="50%"></img>
-    <div class="comment-section">
-      <p>💬 COMMENTS</p>
-    <p>user1: Great work!</p>
-    <p>user2: ur so fast</p>
-    </div>
+    {generateGraph()}
+    <Comments/>
     </main>
   );
 }

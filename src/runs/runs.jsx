@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-export function Runs() {
+export function Runs(props) {
   return (
     <main>
-      <h2>KATE'S RUNS</h2>
+      <h2>{props.userName.toUpperCase()}'S RUNS</h2>
       <table>
         <thead>
           <tr className="header-row">

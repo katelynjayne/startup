@@ -2,8 +2,9 @@
 https://startup.rundiary.click
 
 ## REACT Deliverable
-* **Bundled using Vite**: Done.
+* **Bundled using Vite**: ✅
 * **Components**:
+    * Login authentication functionality using local storage
 * **Router**: Routing between pages from nav bar and various other NavLinks.
 * **Hooks**:
 
