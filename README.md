@@ -1,6 +1,12 @@
 # RUN DIARY
 https://startup.rundiary.click
 
+## REACT Deliverable
+* **Bundled using Vite**: Done.
+* **Components**:
+* **Router**: Routing between pages from nav bar and various other NavLinks.
+* **Hooks**:
+
 ## CSS Deliverable
 * **Header, footer, and main content body**: All styled and arranged well.
 * **Navigation elements**: Restyled navbar to put in top right corner, using both bootstrap framework and some custom styling.

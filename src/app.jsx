@@ -6,8 +6,13 @@ import { Login } from './login/login';
 import { Add } from './add/add';
 import { Runs } from './runs/runs';
 import { Stats } from './stats/stats';
+import { AuthState } from './login/authState';
 
 export default function App() {
+  const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
+  const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
+  const [authState, setAuthState] = React.useState(currentAuthState);
+
   return (
     <BrowserRouter>
     <div className= "body">
@@ -15,19 +20,33 @@ export default function App() {
             <nav className="navbar">
                 <menu className="navbar-nav">
                     <li className="nav-item"><NavLink className="nav-link" to=''>Login</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link"to='/add'>Add Run</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link" to='/runs'>Runs</NavLink></li>
-                    <li className="nav-item"><NavLink className="nav-link"to='/stats'>Stats</NavLink></li>
+                    {authState === AuthState.Authenticated && (
+                    <li className="nav-item"><NavLink className="nav-link" to='/runs'>Runs</NavLink></li>)}
+                    {authState === AuthState.Authenticated && (
+                    <li className="nav-item"><NavLink className="nav-link"to='/add'>Add Run</NavLink></li>)}
                 </menu>
             </nav>
                 <h1>RUN DIARY</h1>
 
-                <span className="secret">secret third thing</span>
+                <span className="secret">.............secret third thing</span>
                 
         </header>
 
         <Routes>
-            <Route path='/' element={<Login />} exact />
+            <Route
+                path='/'
+                element={
+                <Login
+                    userName={userName}
+                    authState={authState}
+                    onAuthChange={(userName, authState) => {
+                    setAuthState(authState);
+                    setUserName(userName);
+                    }}
+                />
+                }
+                exact
+            />
             <Route path='/add' element={<Add />} />
             <Route path='/runs' element={<Runs />} />
             <Route path='/stats' element={<Stats />} />
@@ -47,5 +66,5 @@ export default function App() {
 }
 
 function NotFound() {
-    return <main>404: Return to sender. Address unknown.</main>;
+    return <main>404: Unknown address!! :(</main>;
   }

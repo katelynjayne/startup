@@ -103,6 +103,7 @@ a.see-more-link:hover {
 
 .custom-btn {
     background-color: rgb(192,199,140);
+    margin: 1px;
 }
 
 .custom-btn:hover {
