@@ -10,25 +10,6 @@ export function Runs(props) {
     }
   }, []);
 
-  function calculatePace(hr, min, sec, mi) {
-    // Convert total time to seconds
-    const totalSeconds = parseInt(hr,10) * 3600 + parseInt(min,10) * 60 + parseInt(sec,10);
-    
-    // Calculate pace in seconds per mile
-    const paceSeconds = totalSeconds / mi;
-    
-    // Convert pace to minutes and seconds per mile
-    const paceMinutes = Math.floor(paceSeconds / 60);
-    const paceRemainingSeconds = Math.round(paceSeconds % 60);
-    
-    // Format seconds to always be two digits for consistency
-    const formattedSeconds = paceRemainingSeconds.toString().padStart(2, '0');
-    
-    // Return the pace as a string in "{minutes}:{seconds}/mi" format
-    return `${paceMinutes}:${formattedSeconds}/mi`;
-  }
-  
-
   const dataRows = [];
   if (data.length) {
     for (const [i, row] of data.entries()) {
@@ -36,10 +17,10 @@ export function Runs(props) {
         <tr key = {i}>
           <td>{row.date}</td>
           <td>{row.distance} mi</td>
-          <td>{(row.hours>0)?`${row.hours}:`:""}{row.minutes}:{row.seconds}</td>
-          <td>{calculatePace(row.hours,row.minutes,row.seconds,row.distance)}</td>
+          <td>{(row.hours>0)?`${row.hours}:`:""}{row.minutes}:{(row.seconds.length == 1)?`0${row.seconds}`:row.seconds}</td>
+          <td>{row.pace}</td>
           <td>{row.type}</td>
-          <td><NavLink to="/stats" className="see-more-link">. . .</NavLink></td>
+          <td><NavLink to="/stats" className="see-more-link" state={{data:row}}>. . .</NavLink></td>
         </tr>
       );
     }
@@ -71,7 +52,7 @@ export function Runs(props) {
       </table>
 
 
-      <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link">click here.</NavLink></p>
+      <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
     </main>
   );
 }

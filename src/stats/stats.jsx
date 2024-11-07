@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Comments } from './comments';
+import { useLocation } from "react-router-dom";
 
 function generateGraph() {
   const img_link = "example_graph.png"
@@ -13,6 +14,11 @@ function generateGraph() {
 }
 
 export function Stats(props) {
+  const location = useLocation();
+  const { state } = location;
+  console.log(location.state)
+  console.log(state.data)
+
   return (
     <main>
       <table>
@@ -27,11 +33,11 @@ export function Stats(props) {
         </thead>
         <tbody>
           <tr>
-          <td>9/23/24</td>
-          <td>3.30 mi</td>
-          <td>28:48</td>
-          <td>8:43/mi</td>
-          <td>workout</td>
+          <td>{state.data.date}</td>
+          <td>{state.data.distance} mi</td>
+          <td>{(state.data.hours>0)?`${state.data.hours}:`:""}{state.data.minutes}:{(state.data.seconds.length == 1)?`0${state.data.seconds}`:state.data.seconds}</td>
+          <td>{state.data.pace}</td>
+          <td>{state.data.type}</td>
         </tr>
         </tbody>
       
