@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export function Add(props) {
     const [date, setDate] = React.useState();
     const [distance, setDist] = React.useState();
-    const [hours, setHrs] = React.useState();
+    const [hours, setHrs] = React.useState(0);
     const [minutes, setMins] = React.useState();
     const [seconds, setSecs] = React.useState();
     const [type, setType] = React.useState("workout");
@@ -72,7 +72,7 @@ export function Add(props) {
                 </div>
                 <div>
                     <label>Hours: </label>
-                    <input type="number" id="hours" className="form-control custom-input custom-time" min="0" onChange={(e) => setHrs(e.target.value)}/>
+                    <input type="number" id="hours" className="form-control custom-input custom-time" defaultValue="0" min="0" onChange={(e) => setHrs(e.target.value)}/>
                     <label>Minutes: </label>
                     <input type="number" id="minutes" className="form-control custom-input custom-time" min="0" max="59" onChange={(e) => setMins(e.target.value)}/>
                     <label>Seconds: </label>
@@ -86,7 +86,7 @@ export function Add(props) {
                     </select>
                 </div>
                 <br />
-                <button className="btn custom-btn" onClick = {() => handleAndGo()} disabled={!date || !distance || !hours || !minutes || !seconds}>ADD RUN!</button>
+                <button className="btn custom-btn" onClick = {() => handleAndGo()} disabled={!date || !distance || !minutes || !seconds}>ADD RUN!</button>
             </div>
         </main>
     );
