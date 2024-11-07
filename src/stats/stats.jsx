@@ -16,20 +16,25 @@ export function Stats() {
   return (
     <main>
       <table>
-        <tr class="header-row">
+        <thead>
+          <tr className="header-row">
           <th>Date</th>
           <th>Distance</th>
           <th>Time</th>
           <th>Avg Pace</th>
           <th>Type</th>
         </tr>
-        <tr>
+        </thead>
+        <tbody>
+          <tr>
           <td>9/23/24</td>
           <td>3.30 mi</td>
           <td>28:48</td>
           <td>8:43/mi</td>
           <td>workout</td>
         </tr>
+        </tbody>
+      
     </table>
     {generateGraph()}
     <Comments/>

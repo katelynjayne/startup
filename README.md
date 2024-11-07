@@ -5,6 +5,7 @@ https://startup.rundiary.click
 * **Bundled using Vite**: ✅
 * **Components**:
     * Login authentication functionality using local storage
+    * Websocket behavior stubbed on stats page with example messages
 * **Router**: Routing between pages from nav bar and various other NavLinks.
 * **Hooks**:
 
