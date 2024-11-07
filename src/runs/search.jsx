@@ -6,23 +6,24 @@ export function Search() {
     const navigate = useNavigate();
 
     function findUser(userName) {
-        const runDataJson = localStorage.getItem(`${userName}Runs`)
+        const runDataJson = localStorage.getItem(`${userName}Runs`);
         if (!runDataJson) {
-            setErrorMessage("Sorry, that user doesn't exist.")
-        }
-        else {
-            navigate("/runs", {state: {userName: userName}})
+            setErrorMessage("Sorry, that user doesn't exist.");
+        } else {
+            navigate("/runs", {state: {userName: userName}});
         }
     }
 
     return (
         <>
-        <input className="form-control custom-input" type="text" placeholder="🔍 Search for other runners!" style={{width:"230px"}} onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                    findUser(e.target.value);
-                    e.target.value = ""
-                }}}></input>
-        {errorMessage && <p>{errorMessage}</p>}
+            <input className="form-control custom-input" type="text" placeholder="🔍 Search for other runners!" style={{width:"230px"}} 
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        findUser(e.target.value);
+                        e.target.value = "";
+                    }}}>
+            </input>
+            {errorMessage && <p>{errorMessage}</p>}
         </>
-    )
+    );
 }
