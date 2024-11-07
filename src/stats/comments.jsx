@@ -2,7 +2,7 @@ import React from "react";
 
 import { Notifier } from "./notifier";
 
-export function Comments() {
+export function Comments(props) {
     const [events, setEvent] = React.useState([]);
 
   React.useEffect(() => {
@@ -14,10 +14,7 @@ export function Comments() {
   });
 
   function handleGameEvent(event) {
-    let newEvents = [event, ...events];
-    if (newEvents.length > 10) {
-      newEvents = newEvents.slice(1, 10);
-    }
+    let newEvents = [...events, event];
     setEvent(newEvents);
   }
 
@@ -32,11 +29,24 @@ export function Comments() {
     }
     return messageArray;
   }
+
+  function sendComment(comment) {
+    Notifier.broadcastEvent(props.userName, comment)
+  }
+
     return (
-        <div className="comment-section">
+        <div className="comment-section" style = {{}}>
             <h3>💬 COMMENTS</h3>
-            {createMessageArray()}
-            <input type="text" className="form-control custom-input" placeholder="Add a comment..." />
+            <div style = {{overflowY: "auto", maxHeight: "110px"}}>
+                {createMessageArray()}
+            </div>
+            <input type="text" className="form-control custom-input" placeholder="Add a comment..." 
+            onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                    sendComment(e.target.value);
+                    e.target.value = ""
+                }}}
+            />
         </div>
     )
 }

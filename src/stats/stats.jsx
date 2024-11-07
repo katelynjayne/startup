@@ -12,7 +12,7 @@ function generateGraph() {
   }
 }
 
-export function Stats() {
+export function Stats(props) {
   return (
     <main>
       <table>
@@ -37,7 +37,7 @@ export function Stats() {
       
     </table>
     {generateGraph()}
-    <Comments/>
+    <Comments userName = {props.userName}/>
     </main>
   );
 }

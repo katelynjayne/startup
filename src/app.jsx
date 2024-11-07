@@ -48,7 +48,7 @@ export default function App() {
             />
             <Route path='/add' element={<Add />} />
             <Route path='/runs' element={<Runs userName={userName}/>} />
-            <Route path='/stats' element={<Stats />} />
+            <Route path='/stats' element={<Stats userName={userName}/>} />
             <Route path='*' element={<NotFound />} />
         </Routes>
 

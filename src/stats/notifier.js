@@ -11,16 +11,14 @@ class EventMessage {
   
     constructor() {
       setInterval(() => {
-        const score = Math.floor(Math.random() * 3000);
-        const date = new Date().toLocaleDateString();
         const userName = 'other-user';
         const msg = "Test message";
-        this.broadcastEvent(userName,{ name: userName, score: score, date: date, msg: msg });
+        this.broadcastEvent(userName, msg);
       }, 5000);
     }
   
     broadcastEvent(from, value) {
-      const event = new EventMessage(from, value.msg);
+      const event = new EventMessage(from, value);
       this.receiveEvent(event);
     }
   
