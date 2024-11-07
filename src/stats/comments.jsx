@@ -37,7 +37,7 @@ export function Comments(props) {
     return (
         <div className="comment-section" style = {{}}>
             <h3>💬 COMMENTS</h3>
-            <div style = {{overflowY: "auto", maxHeight: "110px"}}>
+            <div style = {{overflowY: "auto", height: "110px"}}>
                 {createMessageArray()}
             </div>
             <input type="text" className="form-control custom-input" placeholder="Add a comment..." 

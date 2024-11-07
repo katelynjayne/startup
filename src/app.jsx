@@ -46,7 +46,7 @@ export default function App() {
                 }
                 exact
             />
-            <Route path='/add' element={<Add />} />
+            <Route path='/add' element={<Add userName={userName}/>} />
             <Route path='/runs' element={<Runs userName={userName}/>} />
             <Route path='/stats' element={<Stats userName={userName}/>} />
             <Route path='*' element={<NotFound />} />

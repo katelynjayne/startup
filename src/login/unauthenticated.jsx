@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Button from 'react-bootstrap/Button';
-
 export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState(props.userName);
   const [password, setPassword] = React.useState('');
