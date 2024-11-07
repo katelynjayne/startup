@@ -1,14 +1,24 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Search } from './search';
+
 export function Runs(props) {
   const [data, setData] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);  // Loading state
+  const location = useLocation();
+
+  const userName = location.state?.userName || props.userName;
 
   React.useEffect(() => {
-    const runDataJson = localStorage.getItem(`${props.userName}Runs`)
+    setTimeout(() => {
+const runDataJson = localStorage.getItem(`${userName}Runs`)
     if (runDataJson) {
       setData(JSON.parse(runDataJson));
     }
-  }, []);
+    setLoading(false)
+  },0)
+  
+  }, [userName]);
 
   const dataRows = [];
   if (data.length) {
@@ -34,7 +44,10 @@ export function Runs(props) {
 
   return (
     <main>
-      <h2>{props.userName.toUpperCase()}'S RUNS</h2>
+      <h2>{userName.toUpperCase()}'S RUNS</h2>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
       <table>
         <thead>
           <tr className="header-row">
@@ -49,10 +62,12 @@ export function Runs(props) {
         <tbody>
           {dataRows}
         </tbody>
-      </table>
+      </table>)}
 
 
       <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
+      <Search />
+
     </main>
   );
 }

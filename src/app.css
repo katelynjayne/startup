@@ -134,7 +134,7 @@ input.custom-time {
     
 }
 
-form, div.comment-section {
+.add-form, .comment-section, form.login-box {
     background-color: rgb(254, 250, 224);
     padding: 10px;
     border-radius: 10px;

@@ -9,7 +9,6 @@ export function Add(props) {
     const [minutes, setMins] = React.useState();
     const [seconds, setSecs] = React.useState();
     const [type, setType] = React.useState("workout");
-    const [userData, setUserData] = React.useState([]);
     const navigate = useNavigate();
 
     function calculatePace(hr, min, sec, mi) {
@@ -32,9 +31,10 @@ export function Add(props) {
 
     async function storeRun() {
         let newData = {date: date, distance: distance, hours: hours, minutes: minutes, seconds: seconds, type: type, pace: calculatePace(hours,minutes,seconds,distance)};
+        let userData = [];
         const userDataJson = localStorage.getItem(`${props.userName}Runs`);
         if (userDataJson) {
-            setUserData(JSON.parse(userDataJson));
+            userData = JSON.parse(userDataJson);
         }
         let found = false;
         if (userData.length) {
@@ -53,17 +53,15 @@ export function Add(props) {
         return newData;
     }
 
-    async function handleAndGo(event) {
-        event.preventDefault()
+    async function handleAndGo() {
         const runData = await storeRun();
-        console.log(runData)
         navigate('/stats', { state: { data: runData } });
     }
 
   return (
     <main>
        <h2>ADD RUN</h2>
-    {/* <form method="get"> */}
+    <div className='add-form'>
         <div>
             <label>Date: </label>
             <input type="date" id="date" className="form-control custom-input" onChange={(e) => setDate(e.target.value)}/>
@@ -88,8 +86,8 @@ export function Add(props) {
             </select>
         </div>
         <br />
-        <button className="btn custom-btn" onClick = {(e) => handleAndGo(e)} disabled={!date || !distance || !hours || !minutes || !seconds}>ADD RUN!</button>
-    {/* </form>  */}
+        <button className="btn custom-btn" onClick = {() => handleAndGo()} disabled={!date || !distance || !hours || !minutes || !seconds}>ADD RUN!</button>
+    </div>
     </main>
   );
 }
