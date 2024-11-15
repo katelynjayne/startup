@@ -1,11 +1,12 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Search } from './search';
 
 export function Runs(props) {
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(true); 
     const location = useLocation();
+    const navigate = useNavigate();
 
     const userName = location.state?.userName || props.userName;
 
@@ -66,6 +67,7 @@ export function Runs(props) {
 
             <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
             <Search />
+            {userName != props.userName && <button className="btn custom-btn" onClick={()=>{navigate("/runs", {state: {userName: props.userName}})}}>Return to my runs</button>}
 
         </main>
     );

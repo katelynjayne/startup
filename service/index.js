@@ -10,13 +10,13 @@ let runs = {}
 
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
     const user = users[req.body.username];
     if (user) {
-      res.status(409).send({ msg: 'Existing user' });
+      res.status(409).send({ msg: 'Username taken' });
     } else {
       const user = { username: req.body.username, password: req.body.password, token: uuid.v4() };
       users[user.username] = user;
@@ -36,7 +36,7 @@ apiRouter.post('/auth/create', async (req, res) => {
         return;
       }
     }
-    res.status(401).send({ msg: 'Unauthorized' });
+    res.status(401).send({ msg: 'Wrong username or password' });
   });
   
   // DeleteAuth logout a user

@@ -7,8 +7,7 @@ https://startup.rundiary.click
 * **Third party service call**: Graph generated on /stats with call to [Image-Charts](https://documentation.image-charts.com/).
 * **Backend endpoints**:
     * Login endpoints (createAuth, getAuth, deleteAuth)
-    * Add run
-    * Get runs
+    * addRun, getRuns for respective pages
 * **Frontend calls endpoints**: All pages call respective endpoints using fetch.
 
 ## REACT Deliverable
