@@ -49,15 +49,16 @@ apiRouter.post('/auth/create', async (req, res) => {
   });
 
   // GetRuns
-apiRouter.get('/runs', (req, res) => {
-    res.send(runs[req.body.username]);
+apiRouter.get('/runs', (_req, res) => {
+  console.log(runs)
+    res.send(runs);
   });
 
   function storeRun(newRun, username) {
     userData = runs[username];
     let found = false;
     
-    if (userData.length) {
+    if (userData) {
         for (const [i, item] of userData.entries()) {
             if (item.date < newData.date) {
                 userData.splice(i, 0, newRun);
@@ -65,9 +66,12 @@ apiRouter.get('/runs', (req, res) => {
                 break;
             }
         }
-    } 
-    if (!found) {
+        if (!found) {
         userData.push(newRun);
+    }
+    } 
+    else {
+      runs[username] = [newRun]
     }
     runs[username] = userData;
     return userData;

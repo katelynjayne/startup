@@ -4,6 +4,7 @@ import { Search } from './search';
 
 export function Runs(props) {
     const [data, setData] = React.useState([]);
+    const [allData, setAllData] = React.useState({});
     const [loading, setLoading] = React.useState(true); 
     const location = useLocation();
     const navigate = useNavigate();
@@ -12,14 +13,15 @@ export function Runs(props) {
 
     React.useEffect(() => {
         setLoading(true);
-        setTimeout(() => {
-            const runDataJson = localStorage.getItem(`${userName}Runs`);
-            if (runDataJson) {
-                setData(JSON.parse(runDataJson));
-            }
+        fetch('api/runs')
+            .then((response) => response.json())
+            .then((runs) => {
+                setData(runs[userName]);
+                setAllData(runs);
+            });
+        
             setLoading(false);
-        }, 0);
-    }, [userName]);
+    }, []);
 
     const dataRows = [];
     if (data.length) {
@@ -66,7 +68,7 @@ export function Runs(props) {
             </table>)}
 
             <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
-            <Search />
+            <Search runData={allData} />
             {userName != props.userName && <button className="btn custom-btn" onClick={()=>{navigate("/runs", {state: {userName: props.userName}})}}>Return to my runs</button>}
 
         </main>

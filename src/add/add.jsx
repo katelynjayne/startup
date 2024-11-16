@@ -31,25 +31,12 @@ export function Add(props) {
                     type: type, 
                     pace: calculatePace(hours,minutes,seconds,distance)};
 
-        let userData = [];
-        const userDataJson = localStorage.getItem(`${props.userName}Runs`);
-        if (userDataJson) {
-            userData = JSON.parse(userDataJson);
-        }
-        let found = false;
-        if (userData.length) {
-            for (const [i, item] of userData.entries()) {
-                if (item.date < newData.date) {
-                    userData.splice(i, 0, newData);
-                    found = true;
-                    break;
-                }
-            }
-        } 
-        if (!found) {
-            userData.push(newData);
-        }
-        localStorage.setItem(`${props.userName}Runs`, JSON.stringify(userData));
+        fetch('/api/run', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({newRun: newData, username: props.userName}),
+        });
+
         return newData;
     }
 
