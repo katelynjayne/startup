@@ -4,20 +4,29 @@ import { Comments } from './comments';
 import { useLocation } from "react-router-dom";
 
 function paceStringConversion(paceStr) {
-    let seconds = parseFloat(paceStr.substring(2,4));
-    return paceStr.substring(0,1) + '.' + (seconds/60).toString();
+    let pieces = paceStr.split(":")
+    let seconds = parseFloat(pieces[1].substring(0,2));
+    return (parseInt(pieces[0]) + (seconds/60)).toString();
 }
 
 function generateGraph(allData) {
-    console.log(allData)
     if (allData.length <= 2) {
         return (<p>Add more runs to see your pace graph!</p>);
     }
+    let paces = ""
+    let dates = "|"
+    for (let run of allData.slice(0,10).reverse()) {
+        paces += paceStringConversion(run.pace) + ","
+        let datePieces = run.date.split('-')
+        dates += datePieces[1]+'/'+datePieces[2] + "|"
+    }
+    paces = paces.substring(0, paces.length-1)
+    console.log(paces)
     const [success, setSuccess] = React.useState(false);
-    const graphLink = "https://image-charts.com/chart?cht=ls&chd=t:8.4,11.17,10.35,10.28&chs=800x500&chco=606445&chls=5&chxt=x&chxl=0:|10/5|10/24|11/4|11/8|&chg=1&chf=bg,s,F3C79E"
+    const graphLink = `https://image-charts.com/chart?cht=ls&chd=t:${paces}&chs=800x500&chco=606445&chls=5&chxt=x&chxl=0:${dates}&chg=1&chf=bg,s,F3C79E&chtt=Average+Pace+of+Recent+Runs&chts=606445,30`
     fetch(graphLink)
         .then(() => setSuccess(true))
-        .catch((error) => console.log(error));
+        .catch(() => setSuccess(false));
     if (success) {
         return <img src={graphLink} width="75%"></img>;
     } else {
