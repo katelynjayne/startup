@@ -3,11 +3,24 @@ import React from 'react';
 import { Comments } from './comments';
 import { useLocation } from "react-router-dom";
 
-function generateGraph() {
-    const img_link = "example_graph.png";
-    try {
-        return <img src={img_link} width="50%"></img>;
-    } catch {
+function paceStringConversion(paceStr) {
+    let seconds = parseFloat(paceStr.substring(2,4));
+    return paceStr.substring(0,1) + '.' + (seconds/60).toString();
+}
+
+function generateGraph(allData) {
+    console.log(allData)
+    if (allData.length <= 2) {
+        return (<p>Add more runs to see your pace graph!</p>);
+    }
+    const [success, setSuccess] = React.useState(false);
+    const graphLink = "https://image-charts.com/chart?cht=ls&chd=t:8.4,11.17,10.35,10.28&chs=800x500&chco=606445&chls=5&chxt=x&chxl=0:|10/5|10/24|11/4|11/8|&chg=1&chf=bg,s,F3C79E"
+    fetch(graphLink)
+        .then(() => setSuccess(true))
+        .catch((error) => console.log(error));
+    if (success) {
+        return <img src={graphLink} width="75%"></img>;
+    } else {
         return (<p>Sorry, we had a problem rendering your graph. :(</p>);
     }
 }
@@ -38,7 +51,7 @@ export function Stats(props) {
                     </tr>
                 </tbody>
             </table>
-            {generateGraph()}
+            {generateGraph(state.allData)}
             <Comments userName = {props.userName}/>
         </main>
     );

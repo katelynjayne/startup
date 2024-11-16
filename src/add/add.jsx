@@ -9,6 +9,7 @@ export function Add(props) {
     const [minutes, setMins] = React.useState();
     const [seconds, setSecs] = React.useState();
     const [type, setType] = React.useState("workout");
+    const [allData, setAllData] = React.useState([]);
     const navigate = useNavigate();
 
     function calculatePace(hr, min, sec, mi) {
@@ -31,18 +32,19 @@ export function Add(props) {
                     type: type, 
                     pace: calculatePace(hours,minutes,seconds,distance)};
 
-        fetch('/api/run', {
+        const response = await fetch('/api/run', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({newRun: newData, username: props.userName}),
+            body: JSON.stringify({ newRun: newData, username: props.userName }),
         });
-
-        return newData;
+        const userData = await response.json();
+        setAllData(userData);
+        return [newData, userData];
     }
 
     async function handleAndGo() {
-        const runData = await storeRun();
-        navigate('/stats', { state: { data: runData } });
+        const [runData, allData] = await storeRun();
+        navigate('/stats', { state: { data: runData, allData:allData } });
     }
 
     return (

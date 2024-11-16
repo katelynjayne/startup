@@ -19,8 +19,7 @@ export function Runs(props) {
                 setData(runs[userName]);
                 setAllData(runs);
             });
-        
-            setLoading(false);
+        setLoading(false);
     }, []);
 
     const dataRows = [];
@@ -33,7 +32,7 @@ export function Runs(props) {
                     <td>{(row.hours>0)?`${row.hours}:`:""}{row.minutes}:{(row.seconds.length == 1)?`0${row.seconds}`:row.seconds}</td>
                     <td>{row.pace}</td>
                     <td>{row.type}</td>
-                    <td><NavLink to="/stats" className="see-more-link" state={{data:row}}>. . .</NavLink></td>
+                    <td><NavLink to="/stats" className="see-more-link" state={{data:row, allData:data}}>. . .</NavLink></td>
                 </tr>
             );
         }

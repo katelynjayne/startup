@@ -50,7 +50,6 @@ apiRouter.post('/auth/create', async (req, res) => {
 
   // GetRuns
 apiRouter.get('/runs', (_req, res) => {
-  console.log(runs)
     res.send(runs);
   });
 
@@ -60,7 +59,7 @@ apiRouter.get('/runs', (_req, res) => {
     
     if (userData) {
         for (const [i, item] of userData.entries()) {
-            if (item.date < newData.date) {
+            if (item.date < newRun.date) {
                 userData.splice(i, 0, newRun);
                 found = true;
                 break;
