@@ -30,12 +30,13 @@ export function Add(props) {
                     minutes: minutes, 
                     seconds: seconds, 
                     type: type, 
-                    pace: calculatePace(hours,minutes,seconds,distance)};
+                    pace: calculatePace(hours,minutes,seconds,distance),
+                    username: props.userName};
 
         const response = await fetch('/api/run', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ newRun: newData, username: props.userName }),
+            body: JSON.stringify(newData),
         });
         const userData = await response.json();
         setAllData(userData);

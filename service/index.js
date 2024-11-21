@@ -73,11 +73,11 @@ apiRouter.get('/runs', async (_req, res) => {
     runs[username] = userData;
     return userData;
 }
-  // AddRun
-  apiRouter.post('/run', (req, res) => {
-    userRuns = storeRun(req.body.newRun, req.body.username);
+// AddRun
+apiRouter.post('/run', (req, res) => {
+    userRuns = DB.addRun(req.body.newRun);
     res.send(userRuns);
-  });
+});
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
