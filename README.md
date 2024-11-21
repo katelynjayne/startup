@@ -1,6 +1,13 @@
 # RUN DIARY
 https://startup.rundiary.click
 
+## Login/DB Deliverable
+* **Supports new user registration**:
+* **Supports existing user authentication and logout**:
+* **Stores application data in MongoDB**:
+* **Stores and retrieves credentials in MongoDB**:
+* **Restricts application functionality based upon authentication**:
+
 ## Service Deliverable
 * **HTTP Service using Node.js and Express**: ✅
 * **Frontend served with Express static middleware**: ✅
