@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-let users = {}
 let runs = {}
 
 var apiRouter = express.Router();
@@ -46,10 +45,11 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
-  // GetRuns
-apiRouter.get('/runs', (_req, res) => {
-    res.send(runs);
-  });
+// GetRuns
+apiRouter.get('/runs', async (_req, res) => {
+    const runsMap = await DB.getRuns();
+    res.send(runsMap);
+});
 
   function storeRun(newRun, username) {
     userData = runs[username];

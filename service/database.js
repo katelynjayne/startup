@@ -43,11 +43,19 @@ async function addRun(run) {
     return runCollection.insertOne(run);
 }
 
-function getRuns() {
-    return runCollection;
+async function getRuns() {
+    const runs = {}
+    let usernames = await runCollection.distinct("username")
+    for (let username of usernames) {
+        runs[username] = await runCollection.find({username:username}).toArray();
+    }
+    return runs;
 }
 
 module.exports = {
     getUser,
-    createUser
+    createUser,
+    getUserByToken,
+    addRun,
+    getRuns
 };
