@@ -16,7 +16,7 @@ export function Runs(props) {
         fetch('api/runs')
             .then((response) => response.json())
             .then((runs) => {
-                setData(runs[userName]);
+                setData(runs[userName]?runs[userName]:[]);
                 setAllData(runs);
             });
         setLoading(false);

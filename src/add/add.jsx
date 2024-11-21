@@ -36,10 +36,10 @@ export function Add(props) {
         const response = await fetch('/api/run', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(newData),
+            body: JSON.stringify({newRun:newData}),
         });
         const userData = await response.json();
-        setAllData(userData);
+        setAllData(userData[props.userName]);
         return [newData, userData];
     }
 

@@ -10,27 +10,29 @@ function paceStringConversion(paceStr) {
 }
 
 function generateGraph(allData) {
+    console.log(allData)
     if (allData.length <= 2) {
         return (<p>Add more runs to see your pace graph!</p>);
-    }
-    let paces = ""
-    let dates = "|"
-    for (let run of allData.slice(0,10).reverse()) {
-        paces += paceStringConversion(run.pace) + ","
-        let datePieces = run.date.split('-')
-        dates += datePieces[1]+'/'+datePieces[2] + "|"
-    }
-    paces = paces.substring(0, paces.length-1)
-    console.log(paces)
-    const [success, setSuccess] = React.useState(false);
-    const graphLink = `https://image-charts.com/chart?cht=ls&chd=t:${paces}&chs=800x500&chco=606445&chls=5&chxt=x&chxl=0:${dates}&chg=1&chf=bg,s,F3C79E&chtt=Average+Pace+of+Recent+Runs&chts=606445,30`
-    fetch(graphLink)
-        .then(() => setSuccess(true))
-        .catch(() => setSuccess(false));
-    if (success) {
-        return <img src={graphLink} width="75%"></img>;
     } else {
-        return (<p>Sorry, we had a problem rendering your graph. :(</p>);
+        let paces = ""
+        let dates = "|"
+        for (let run of allData.slice(0,10).reverse()) {
+            paces += paceStringConversion(run.pace) + ","
+            let datePieces = run.date.split('-')
+            dates += datePieces[1]+'/'+datePieces[2] + "|"
+        }
+        paces = paces.substring(0, paces.length-1)
+        console.log(paces)
+        const [success, setSuccess] = React.useState(false);
+        const graphLink = `https://image-charts.com/chart?cht=ls&chd=t:${paces}&chs=800x500&chco=606445&chls=5&chxt=x&chxl=0:${dates}&chg=1&chf=bg,s,F3C79E&chtt=Average+Pace+of+Recent+Runs&chts=606445,30`
+        fetch(graphLink)
+            .then(() => setSuccess(true))
+            .catch(() => setSuccess(false));
+        if (success) {
+            return <img src={graphLink} width="75%"></img>;
+        } else {
+            return (<p>Sorry, we had a problem rendering your graph. :(</p>);
+        }
     }
 }
 
