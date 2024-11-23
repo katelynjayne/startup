@@ -9,8 +9,9 @@ function paceStringConversion(paceStr) {
     return (parseInt(pieces[0]) + (seconds/60)).toString();
 }
 
-function generateGraph(allData) {
-    console.log(allData)
+async function generateGraph() {
+    const allDataJson = await fetch('api/runs');
+    const allData = allDataJson.json();
     if (allData.length <= 2) {
         return (<p>Add more runs to see your pace graph!</p>);
     } else {
@@ -62,7 +63,7 @@ export function Stats(props) {
                     </tr>
                 </tbody>
             </table>
-            {generateGraph(state.allData)}
+            {generateGraph()}
             <Comments userName = {props.userName}/>
         </main>
     );

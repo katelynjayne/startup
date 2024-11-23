@@ -5,21 +5,18 @@ import { Search } from './search';
 export function Runs(props) {
     const [data, setData] = React.useState([]);
     const [allData, setAllData] = React.useState({});
-    const [loading, setLoading] = React.useState(true); 
     const location = useLocation();
     const navigate = useNavigate();
 
     const userName = location.state?.userName || props.userName;
 
     React.useEffect(() => {
-        setLoading(true);
         fetch('api/runs')
             .then((response) => response.json())
             .then((runs) => {
                 setData(runs[userName]?runs[userName]:[]);
                 setAllData(runs);
             });
-        setLoading(false);
     }, []);
 
     const dataRows = [];
@@ -47,9 +44,6 @@ export function Runs(props) {
     return (
         <main>
             <h2>{userName.toUpperCase()}'S RUNS</h2>
-            {loading ? (
-                <p>Loading...</p>
-                ) : (
             <table>
                 <thead>
                     <tr className="header-row">
@@ -64,7 +58,7 @@ export function Runs(props) {
                 <tbody>
                     {dataRows}
                 </tbody>
-            </table>)}
+            </table>
 
             <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
             <Search runData={allData} />

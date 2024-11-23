@@ -1,17 +1,18 @@
 const express = require('express');
-const uuid = require('uuid');
 const app = express();
 app.use(express.json());
+
+const cookieParser = require('cookie-parser');
 const DB = require('./database.js');
 const bcrypt = require('bcrypt');
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
-let runs = {}
-
 var apiRouter = express.Router();
+app.use(cookieParser());
 app.use(`/api`, apiRouter);
 app.use(express.static('public'));
+
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
@@ -45,36 +46,30 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
-// GetRuns
-apiRouter.get('/runs', async (_req, res) => {
-    const runsMap = await DB.getRuns();
-    res.send(runsMap);
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  const authToken = req.cookies["token"];
+  const user = await DB.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 });
 
-  function storeRun(newRun, username) {
-    userData = runs[username];
-    let found = false;
-    
-    if (userData) {
-        for (const [i, item] of userData.entries()) {
-            if (item.date < newRun.date) {
-                userData.splice(i, 0, newRun);
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-        userData.push(newRun);
-    }
-    } 
-    else {
-      runs[username] = [newRun]
-    }
-    runs[username] = userData;
-    return userData;
-}
+// GetRuns
+secureApiRouter.get('/runs', async (req, res) => {
+    const authToken = req.cookies["token"];
+    const user = await DB.getUserByToken(authToken);
+    const runs = await DB.getRuns(user.username);
+    console.log(runs)
+    res.send(runs);
+});
+
 // AddRun
-apiRouter.post('/run', (req, res) => {
+secureApiRouter.post('/run', (req, res) => {
     userRuns = DB.addRun(req.body.newRun);
     res.send(userRuns);
 });
