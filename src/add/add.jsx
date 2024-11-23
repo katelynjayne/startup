@@ -9,7 +9,6 @@ export function Add(props) {
     const [minutes, setMins] = React.useState();
     const [seconds, setSecs] = React.useState();
     const [type, setType] = React.useState("workout");
-    const [allData, setAllData] = React.useState([]);
     const navigate = useNavigate();
 
     function calculatePace(hr, min, sec, mi) {
@@ -38,14 +37,12 @@ export function Add(props) {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({newRun:newData}),
         });
-        const userData = await response.json();
-        setAllData(userData[props.userName]);
-        return [newData, userData];
+        return newData;
     }
 
     async function handleAndGo() {
-        const [runData, allData] = await storeRun();
-        navigate('/stats', { state: { data: runData, allData:allData } });
+        const runData = await storeRun();
+        navigate('/stats', { state: { data: runData } });
     }
 
     return (

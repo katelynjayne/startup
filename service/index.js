@@ -31,7 +31,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (user) {
         if (await bcrypt.compare(req.body.password, user.password)) {
             setAuthCookie(res, user.token);
-            res.send()
+            res.send();
         } else {
             res.status(401).send({ msg: 'Incorrect password.' });
         }
@@ -41,7 +41,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 });
   
 // DeleteAuth logout a user
-apiRouter.delete('/auth/logout', (req, res) => {
+apiRouter.delete('/auth/logout', (_req, res) => {
     res.clearCookie("token");
     res.status(204).end();
 });
@@ -57,13 +57,13 @@ const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
-  const authToken = req.cookies["token"];
-  const user = await DB.getUserByToken(authToken);
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' });
-  }
+    const authToken = req.cookies["token"];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: 'Unauthorized' });
+    }
 });
 
 // GetRuns
@@ -82,11 +82,11 @@ secureApiRouter.post('/run', (req, res) => {
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
-  res.cookie("token", authToken, {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'strict',
-  });
+    res.cookie("token", authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    });
 }
 
 app.listen(port, () => {

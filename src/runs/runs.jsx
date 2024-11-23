@@ -8,33 +8,27 @@ export function Runs(props) {
     const navigate = useNavigate();
 
     const userName = location.state?.userName || props.userName;
-
    
-        React.useEffect(() => {
-             if (userName === props.userName) {
-        fetch('api/runs')
-            .then((response) => {
-                if (response.status === 401) {
-                    return Promise.reject("Unauthorized");
-                }
-                return response.json();
-            })
-            .then((runs) => {
-                setData(runs);
-            })
-            .catch(() => {
-                setData(-1);
-            });
+    React.useEffect(() => {
+        if (userName === props.userName) {
+            fetch('api/runs')
+                .then((response) => {
+                    if (response.status === 401) {
+                        return Promise.reject("Unauthorized");
+                    }
+                    return response.json();
+                }).then((runs) => {
+                    setData(runs);
+                }).catch(() => {
+                    setData(-1);
+                });
+        } else {
+            setData(location.state.data);
         }
-        else {
-        setData(location.state.data);
-    }
     }, []);
 
-    
-
-    
     const dataRows = [];
+
     if (data === -1) {
         dataRows.push(
             <tr key='0'>
@@ -42,6 +36,7 @@ export function Runs(props) {
             </tr>
         );
     }
+
     else if (data.length) {
         for (const [i, row] of data.entries()) {
             dataRows.push(
@@ -85,7 +80,6 @@ export function Runs(props) {
             {userName && <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>}
             <Search />
             {userName != props.userName && <button className="btn custom-btn" onClick={()=>{navigate("/runs", {state: {userName: props.userName}})}}>Return to my runs</button>}
-
         </main>
     );
 }

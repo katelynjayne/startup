@@ -14,11 +14,12 @@ export function Search() {
         }
         else {
             const userData = await response.json()
-        if (!userData) {
-            setErrorMessage("Sorry, that user has not added any runs.");
-        } else {
-            navigate("/runs", {state: {userName: userName, data: userData}});
-        }}
+            if (!userData) {
+                setErrorMessage("Sorry, that user has not added any runs.");
+            } else {
+                navigate("/runs", {state: {userName: userName, data: userData}});
+            }
+        }
     }
 
     return (

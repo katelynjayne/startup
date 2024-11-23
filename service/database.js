@@ -28,28 +28,17 @@ function getUserByToken(token) {
 
 async function createUser(username, password) {
     const passwordHash = await bcrypt.hash(password, 10);
-
     const user = {
         username: username,
         password: passwordHash,
         token: uuid.v4(),
     };
     await userCollection.insertOne(user);
-
     return user;
 }
 
 async function addRun(run) {
     return runCollection.insertOne(run);
-}
-
-async function getAllRuns() {
-    const runs = {}
-    let usernames = await runCollection.distinct("username")
-    for (let username of usernames) {
-        runs[username] = await runCollection.find({username:username}).toArray();
-    }
-    return runs;
 }
 
 async function getRuns(username) {
@@ -67,6 +56,5 @@ module.exports = {
     getUserByToken,
     addRun,
     getRuns,
-    getAllRuns,
     clear
 };

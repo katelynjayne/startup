@@ -2,11 +2,11 @@
 https://startup.rundiary.click
 
 ## Login/DB Deliverable
-* **Supports new user registration**:
-* **Supports existing user authentication and logout**:
-* **Stores application data in MongoDB**:
-* **Stores and retrieves credentials in MongoDB**:
-* **Restricts application functionality based upon authentication**:
+* **Supports new user registration**: Create Account button on login page with corresponding backend.
+* **Supports existing user authentication and logout**: Login/Logout buttons on login page with backend endpoints.
+* **Stores application data in MongoDB**: database.js stores a collection of each user's runs on MongoDB.
+* **Stores and retrieves credentials in MongoDB**: username, encrypted password, and authToken stored in user collection.
+* **Restricts application functionality based upon authentication**: Runs page renders differently based on whether the user is logged in. Add run and stats cannot be accessed.
 
 ## Service Deliverable
 * **HTTP Service using Node.js and Express**: ✅
