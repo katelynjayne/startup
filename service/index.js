@@ -46,6 +46,13 @@ apiRouter.delete('/auth/logout', (req, res) => {
     res.status(204).end();
 });
 
+//SEARCH
+apiRouter.get('/search', async (req, res) => {
+    const { username } = req.query;
+    const runs = await DB.getRuns(username);
+    res.send(runs);
+});
+
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
@@ -64,7 +71,6 @@ secureApiRouter.get('/runs', async (req, res) => {
     const authToken = req.cookies["token"];
     const user = await DB.getUserByToken(authToken);
     const runs = await DB.getRuns(user.username);
-    console.log(runs)
     res.send(runs);
 });
 

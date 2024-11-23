@@ -1,17 +1,24 @@
 import React from "react"
 import { useNavigate } from "react-router-dom";
 
-export function Search(props) {
+export function Search() {
     const [errorMessage, setErrorMessage] = React.useState("");
     const navigate = useNavigate();
 
-    function findUser(userName) {
-        const userData = props.runData[userName]
-        if (!userData) {
-            setErrorMessage("Sorry, that user doesn't exist.");
-        } else {
-            navigate("/runs", {state: {userName: userName}});
+    async function findUser(userName) {
+        const response = await fetch(`/api/search?username=${encodeURIComponent(userName)}`, {
+            method: 'get'
+        });
+        if (!response.ok) {
+            setErrorMessage("User does not exist.")
         }
+        else {
+            const userData = await response.json()
+        if (!userData) {
+            setErrorMessage("Sorry, that user has not added any runs.");
+        } else {
+            navigate("/runs", {state: {userName: userName, data: userData}});
+        }}
     }
 
     return (
