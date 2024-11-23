@@ -56,11 +56,17 @@ async function getRuns(username) {
     return runCollection.find({username:username},{sort:{date:-1}}).toArray();
 }
 
+function clear() {
+    runCollection.deleteMany({});
+    userCollection.deleteMany({});
+}
+
 module.exports = {
     getUser,
     createUser,
     getUserByToken,
     addRun,
     getRuns,
-    getAllRuns
+    getAllRuns,
+    clear
 };
