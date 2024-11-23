@@ -25,7 +25,7 @@ export function Runs(props) {
         } else {
             setData(location.state.data);
         }
-    }, []);
+    }, [userName, props.userName, location.state?.data]);
 
     const dataRows = [];
 
