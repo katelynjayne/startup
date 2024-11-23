@@ -12,16 +12,31 @@ export function Runs(props) {
 
     React.useEffect(() => {
         fetch('api/runs')
-            .then((response) => response.json())
+            .then((response) => {
+                if (response.status === 401) {
+                    return Promise.reject("Unauthorized");
+                }
+                return response.json();
+            })
             .then((runs) => {
-                //setData(runs[userName]?runs[userName]:[]);
                 setData(runs);
                 setAllData(runs);
+            })
+            .catch(() => {
+                setData(-1);
             });
     }, []);
 
+    
     const dataRows = [];
-    if (data.length) {
+    if (data === -1) {
+        dataRows.push(
+            <tr key='0'>
+                <td colSpan='6'>Log in to start adding runs!</td>
+            </tr>
+        );
+    }
+    else if (data.length) {
         for (const [i, row] of data.entries()) {
             dataRows.push(
                 <tr key = {i}>
@@ -44,7 +59,7 @@ export function Runs(props) {
 
     return (
         <main>
-            <h2>{userName.toUpperCase()}'S RUNS</h2>
+            <h2>{userName?`${userName.toUpperCase()}'S RUNS`:"YOUR RUNS"}</h2>
             <table>
                 <thead>
                     <tr className="header-row">
@@ -61,7 +76,7 @@ export function Runs(props) {
                 </tbody>
             </table>
 
-            <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>
+            {userName && <p className="table-info">To add more runs, <NavLink to="/add" className="see-more-link"> click here.</NavLink></p>}
             <Search runData={allData} />
             {userName != props.userName && <button className="btn custom-btn" onClick={()=>{navigate("/runs", {state: {userName: props.userName}})}}>Return to my runs</button>}
 

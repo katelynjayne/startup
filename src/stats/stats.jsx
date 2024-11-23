@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Comments } from './comments';
-import { generatePath, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 
 
