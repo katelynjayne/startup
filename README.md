@@ -1,6 +1,13 @@
 # RUN DIARY
 https://startup.rundiary.click
 
+## WebSocket Deliverable
+* **Backend listens for connection**: ✅
+* **Frontend makes connection**: ✅
+* **Data sent over connection**: ✅
+* **Data displayed in app interface**: Messages appear in comment box.
+* **All elements working**: ✅
+
 ## Login/DB Deliverable
 * **Supports new user registration**: Create Account button on login page with corresponding backend.
 * **Supports existing user authentication and logout**: Login/Logout buttons on login page with backend endpoints.
