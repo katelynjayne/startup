@@ -5,7 +5,7 @@ https://startup.rundiary.click
 * **Backend listens for connection**: ✅
 * **Frontend makes connection**: ✅
 * **Data sent over connection**: ✅
-* **Data displayed in app interface**: Messages appear in comment box.
+* **Data displayed in app interface**: Messages appear in comment box on /stats. (visit from See More column on /runs)
 * **All elements working**: ✅
 
 ## Login/DB Deliverable
