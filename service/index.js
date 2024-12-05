@@ -12,7 +12,8 @@ var apiRouter = express.Router();
 app.use(cookieParser());
 app.use(`/api`, apiRouter);
 app.use(express.static('public'));
-
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
