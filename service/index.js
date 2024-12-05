@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
-
 const cookieParser = require('cookie-parser');
 const DB = require('./database.js');
 const bcrypt = require('bcrypt');
+const { ws } = require('./ws.js')
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -89,6 +89,8 @@ function setAuthCookie(res, authToken) {
     });
 }
 
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+ws(httpService);
