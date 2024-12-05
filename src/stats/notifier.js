@@ -10,16 +10,26 @@ class EventMessage {
     handlers = [];
   
     constructor() {
-      setInterval(() => {
-        const userName = 'other-user';
-        const msg = "Test message";
-        this.broadcastEvent(userName, msg);
-      }, 5000);
+      let port = window.location.port;
+    const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
+    this.socket = new WebSocket(`${protocol}://${window.location.hostname}:${port}/ws`);
+    this.socket.onopen = (event) => {
+      this.receiveEvent(new EventMessage('Simon', { msg: 'connected' }));
+    };
+    this.socket.onclose = (event) => {
+      this.receiveEvent(new EventMessage('Simon', { msg: 'disconnected' }));
+    };
+    this.socket.onmessage = async (msg) => {
+      try {
+        const event = JSON.parse(await msg.data.text());
+        this.receiveEvent(event);
+      } catch {}
+    };
     }
   
     broadcastEvent(from, value) {
       const event = new EventMessage(from, value);
-      this.receiveEvent(event);
+      this.socket.send(JSON.stringify(event));
     }
   
     addHandler(handler) {
