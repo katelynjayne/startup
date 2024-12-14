@@ -1,3 +1,29 @@
+# Final Notes
+* Port 443 - HTTPS
+* Port 80 - HTTP
+* Port 22 - SSH
+* status 403 - forbidden / 404 - not found / 502 - bad gateway / 500 - other
+* content-type - format of what is being sent
+* Secure - encrypted
+* HttpOnly - can't be accessed by JavaScript
+* SameSite - only on origin site
+* ws created for asynchronous communication with several devices
+* JSX - JavaScript XML
+* JS - JavaScript
+* AWS - Amazon Web services
+* NPM - Node Package Manager
+* NVM - Node Version Manager
+* state hooks remember information
+* context hooks receive information from parents without passing in as props
+* ref hooks hold info not used for rendering
+* effect hooks coordinate with external systems
+* performance hooks avoid re-rendering work
+* package.json - metadata and packages for Node.js proj
+* fetch - makes http requests, returns promise
+* Node.js - runs js outside the browser for backend server
+* pm2 - process manager for node
+* vite - build tool
+
 # Midterm Review
 ## Console Commands
 * chmod - change permissions for files
